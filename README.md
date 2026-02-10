@@ -60,7 +60,7 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 # If using Git
-git clone <your-repo-url>
+git clone https://github.com/aadityabhansali02-eng/PERSISTED-TO-DO-LIST.git
 cd persisted_todo_list
 
 # Or download and extract the ZIP file

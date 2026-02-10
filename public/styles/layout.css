@@ -1,0 +1,458 @@
+/* ============================================
+   ORANGE TODO LIST - NO HTML CHANGES NEEDED
+   ============================================ */
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+:root {
+    /* Orange Gradient */
+    --primary-orange: #FF6B35;
+    --secondary-orange: #FF8C42;
+    --light-orange: #FFB88C;
+    --pale-orange: #FFF4E6;
+
+    /* Complementary Colors */
+    --deep-teal: #004E64;
+    --soft-teal: #25A18E;
+    --cream: #FFF8F0;
+    --warm-white: #FFFBF5;
+
+    /* Neutrals */
+    --dark-gray: #2C3E50;
+    --medium-gray: #5A6C7D;
+    --light-gray: #E8E8E8;
+    --shadow: rgba(255, 107, 53, 0.15);
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--pale-orange) 0%, var(--warm-white) 50%, #FFE8D6 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    color: var(--dark-gray);
+}
+
+/* ============================================
+   MAIN LIST CONTAINER
+   ============================================ */
+body>ul {
+    list-style: none;
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 60px var(--shadow);
+    margin-bottom: 20px;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Empty state */
+body>ul:empty::before {
+    content: '📝 No tasks yet! Add one below to get started.';
+    display: block;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--medium-gray);
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+/* ============================================
+   LIST ITEMS (Each todo)
+   ============================================ */
+ul>li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    background: var(--warm-white);
+    border-radius: 14px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+ul>li:hover {
+    background: white;
+    border-color: var(--light-orange);
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.1);
+    transform: translateY(-2px);
+}
+
+ul>li:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   FORMS INSIDE LIST ITEMS
+   ============================================ */
+li>form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+/* Delete form (first form - with DONE button) */
+li>form:first-child {
+    flex-shrink: 0;
+}
+
+/* Edit form (second form - with input) */
+li>form:nth-child(2) {
+    flex: 1;
+    gap: 10px;
+}
+
+/* Edit button form (third form - with EDIT button) */
+li>form:nth-child(3) {
+    flex-shrink: 0;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* DONE button (delete) */
+li>form:first-child button {
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+}
+
+li>form:first-child button:hover {
+    background: linear-gradient(135deg, var(--secondary-orange), var(--primary-orange));
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+    transform: scale(1.05);
+}
+
+li>form:first-child button:active {
+    transform: scale(0.95);
+}
+
+/* EDIT button */
+li>form:nth-child(3) button {
+    background: rgba(37, 161, 142, 0.1);
+    color: var(--soft-teal);
+}
+
+li>form:nth-child(3) button:hover {
+    background: var(--soft-teal);
+    color: white;
+    transform: scale(1.05);
+}
+
+li>form:nth-child(3) button:active {
+    transform: scale(0.95);
+}
+
+/* ============================================
+   INPUT FIELDS (Edit mode)
+   ============================================ */
+li input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid var(--light-orange);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-gray);
+    background: white;
+    transition: all 0.3s ease;
+}
+
+li input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+}
+
+/* Hidden input (for ID) */
+input[type="hidden"] {
+    display: none;
+}
+
+/* ============================================
+   NEW ITEM FORM (Bottom form)
+   ============================================ */
+body>form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px var(--shadow);
+    border: 2px dashed var(--light-orange);
+    transition: all 0.3s ease;
+}
+
+body>form:hover {
+    border-color: var(--primary-orange);
+    box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+}
+
+body>form input[type="text"] {
+    flex: 1;
+    padding: 14px 20px;
+    border: 2px solid var(--light-orange);
+    border-radius: 14px;
+    font-size: 1.05rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-gray);
+    background: var(--warm-white);
+    transition: all 0.3s ease;
+}
+
+body>form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
+    background: white;
+}
+
+body>form input[type="text"]::placeholder {
+    color: var(--medium-gray);
+    opacity: 0.6;
+}
+
+/* Add button (+) */
+body>form button {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    padding: 0;
+}
+
+body>form button:hover {
+    background: linear-gradient(135deg, var(--secondary-orange), var(--primary-orange));
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    transform: scale(1.05) rotate(90deg);
+}
+
+body>form button:active {
+    transform: scale(0.95) rotate(90deg);
+}
+
+/* ============================================
+   TITLE/HEADING (if you add one later)
+   ============================================ */
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--pale-orange);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-orange);
+}
+
+/* ============================================
+   FOCUS VISIBLE (ACCESSIBILITY)
+   ============================================ */
+*:focus-visible {
+    outline: 3px solid var(--primary-orange);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 640px) {
+    body {
+        padding: 20px 15px;
+    }
+
+    body>ul {
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    ul>li {
+        padding: 14px 16px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    li input[type="text"] {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+    }
+
+    button {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    body>form {
+        padding: 16px;
+        gap: 10px;
+    }
+
+    body>form button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    ul>li {
+        padding: 12px;
+    }
+
+    li>form:nth-child(2) {
+        flex-basis: 100%;
+        order: 3;
+    }
+
+    body>form input[type="text"] {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   ANIMATIONS & EFFECTS
+   ============================================ */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Add this class via JavaScript for validation feedback */
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* ============================================
+   HOVER EFFECTS FOR BETTER UX
+   ============================================ */
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}

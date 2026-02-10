@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/layout.css">
+</head>
+
+<body>
+
+    <ul>
+        <%items.forEach(item=>{%>
+            <li>
+                <form action="/delete/<%=item.id%>" method="post">
+                    <button type="submit">DONE</button>
+                </form>
+
+                <form action="/edititem" method="post">
+                    <input type="text" value="<%=item.title%>" name="editedtext" <%if(locals.id && id==item.id){%>
+                    autofocus="on" <%}%>>
+                        <input type="hidden" value="<%=item.id%>" name="hiddenid">
+                </form>
+
+                <form action="/edit/<%=item.id%>" method="post">
+                    <button type="submit">EDIT</button>
+
+                </form>
+
+
+            </li>
+
+            <% }) %>
+
+    </ul>
+
+
+
+    <form action="/newtodo" method="post">
+        <input type="text" placeholder="new item" autofocus autocomplete="off" autocorrect="on" name="newitem" required>
+        <button type="submit">+</button>
+    </form>
+
+
+
+
+</body>
+
+</html>
